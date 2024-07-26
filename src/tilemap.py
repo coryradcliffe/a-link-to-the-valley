@@ -5,11 +5,11 @@ class TileMap:
     def __init__(self, filename):
         self.tile_size = 32
         self.tiles = self.load_tiles(filename)
-        self.map_data = self.load_map(os.path.join(os.path.dirname(__file__), '..', 'assets', 'tilesets', 'map.txt'))
+        self.map_data = self.load_map(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'assets', 'tilesets', 'map.txt'))
 
     def load_tiles(self, filename):
         # Correctly resolve the path to the tileset file
-        tileset_path = os.path.join(os.path.dirname(__file__), '..', 'assets', 'tilesets', filename)
+        tileset_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'assets', 'tilesets', filename)
         try:
             tileset = pygame.image.load(tileset_path).convert()
         except pygame.error as message:

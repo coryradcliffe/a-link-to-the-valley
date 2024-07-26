@@ -1,31 +1,29 @@
 import pygame
-from player import Player
-from enemy import Enemy
-from tilemap import TileMap
-from settings import SCREEN_WIDTH, SCREEN_HEIGHT
+from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
+from game import Game
 
-class Game:
-    def __init__(self, screen):
-        self.screen = screen
-        self.all_sprites = pygame.sprite.Group()
-        self.player = Player()
-        self.all_sprites.add(self.player)
-        self.enemies = pygame.sprite.Group()
-        self.create_enemies()
-        self.tilemap = TileMap('flooring.png')
+def main():
+    pygame.init()
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption("Edo Era Ronin Game")
+    clock = pygame.time.Clock()
 
-    def create_enemies(self):
-        enemy = Enemy('skeleton.png', 48, 48)
-        self.enemies.add(enemy)
-        self.all_sprites.add(enemy)
+    game = Game(screen)
 
-    def handle_event(self, event):
-        pass
+    running = True
+    while running:
+        dt = clock.tick(FPS)  # Ensure the game runs at the specified FPS
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            game.handle_event(event)
 
-    def update(self, dt):
-        self.all_sprites.update(dt)
+        game.update(dt)
+        game.draw()
 
-    def draw(self):
-        self.screen.fill((0, 0, 0))
-        self.tilemap.draw(self.screen)
-        self.all_sprites.draw(self.screen)
+        pygame.display.flip()
+
+    pygame.quit()
+
+if __name__ == '__main__':
+    main()
