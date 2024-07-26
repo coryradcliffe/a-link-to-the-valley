@@ -2,11 +2,11 @@ import pygame
 import os
 
 def load_image(filename, colorkey=None):
-    fullname = os.path.join(os.path.dirname(__file__), '..', 'assets', filename)
+    fullname = os.path.join(os.path.dirname(__file__), '..', 'assets', filename.replace('/', os.sep))
     try:
         image = pygame.image.load(fullname)
     except pygame.error as message:
-        print(f"Cannot load image: {filename}")
+        print(f"Cannot load image: {fullname}")
         raise SystemExit(message)
     image = image.convert()
     if colorkey is not None:

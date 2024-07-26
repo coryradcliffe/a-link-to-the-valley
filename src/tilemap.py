@@ -9,7 +9,7 @@ class TileMap:
 
     def load_tiles(self, filename):
         # Correctly resolve the path to the tileset file
-        tileset_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'assets', 'tilesets', filename)
+        tileset_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'assets', 'tilesets', 'floors', filename.replace('/', os.sep))
         try:
             tileset = pygame.image.load(tileset_path).convert()
         except pygame.error as message:

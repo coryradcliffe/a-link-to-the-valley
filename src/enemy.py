@@ -12,11 +12,11 @@ class Enemy(pygame.sprite.Sprite):
         self.current_animation = self.idle_animation
 
     def load_animations(self, sprite_file, frame_width, frame_height):
-        idle_frames = load_sprite_sheet('characters/' + sprite_file, frame_width, frame_height)[0:18]
-        move_frames = load_sprite_sheet('characters/' + sprite_file, frame_width, frame_height)[18:36]
-        attack_frames = load_sprite_sheet('characters/' + sprite_file, frame_width, frame_height)[36:54]
-        damaged_frames = load_sprite_sheet('characters/' + sprite_file, frame_width, frame_height)[54:72]
-        death_frames = load_sprite_sheet('characters/' + sprite_file, frame_width, frame_height)[72:78]
+        idle_frames = load_sprite_sheet('character/' + sprite_file, frame_width, frame_height)[0:18]
+        move_frames = load_sprite_sheet('character/' + sprite_file, frame_width, frame_height)[18:36]
+        attack_frames = load_sprite_sheet('character/' + sprite_file, frame_width, frame_height)[36:54]
+        damaged_frames = load_sprite_sheet('character/' + sprite_file, frame_width, frame_height)[54:72]
+        death_frames = load_sprite_sheet('character/' + sprite_file, frame_width, frame_height)[72:78]
 
         self.idle_animation = Animation(idle_frames, 100)
         self.move_animation = Animation(move_frames, 100)

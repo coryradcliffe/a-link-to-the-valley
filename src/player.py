@@ -14,9 +14,9 @@ class Player(pygame.sprite.Sprite):
         self.current_animation = self.idle_animation
 
     def load_animations(self):
-        idle_frames = load_sprite_sheet('characters/player.png', 48, 48)[0:6]
-        move_frames = load_sprite_sheet('characters/player.png', 48, 48)[18:24]
-        attack_frames = load_sprite_sheet('characters/player.png', 48, 48)[36:42]
+        idle_frames = load_sprite_sheet('character/player.png', 48, 48)[0:6]
+        move_frames = load_sprite_sheet('character/player.png', 48, 48)[18:24]
+        attack_frames = load_sprite_sheet('character/player.png', 48, 48)[36:42]
 
         self.idle_animation = Animation(idle_frames, 100)
         self.move_animation = Animation(move_frames, 100)
@@ -37,4 +37,9 @@ class Player(pygame.sprite.Sprite):
             self.current_animation = self.move_animation
         elif keys[pygame.K_UP]:
             self.rect.y -= self.speed
-            self.current_animation = self.mov
+            self.current_animation = self.move_animation
+        elif keys[pygame.K_DOWN]:
+            self.rect.y += self.speed
+            self.current_animation = self.move_animation
+        else:
+            self.current_animation = self.idle_animation
